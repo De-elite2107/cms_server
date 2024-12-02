@@ -130,6 +130,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://cmsserver-production.up.railway.app',
+    'localhost',
+]
+
 AUTH_USER_MODEL = 'userapp.User'
 
 # Internationalization
