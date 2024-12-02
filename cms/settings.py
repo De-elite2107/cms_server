@@ -76,7 +76,8 @@ MIDDLEWARE = [
 ]
 
 CORS_ORIGIN_WHITELIST = [
-    'http://localhost:3000',  # React's default port
+    'https://localhost:3000',  # React's default port
+    'https://cmsserver.up.railway.app',
 ]
 
 ROOT_URLCONF = 'cms.urls'
