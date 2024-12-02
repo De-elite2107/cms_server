@@ -77,7 +77,6 @@ MIDDLEWARE = [
 
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',  # React's default port
-    'http://cms_server.railway.internal',
 ]
 
 ROOT_URLCONF = 'cms.urls'
@@ -132,7 +131,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://cmsserver-production.up.railway.app',
+    'https://cmsserver.up.railway.app',
 ]
 
 AUTH_USER_MODEL = 'userapp.User'
