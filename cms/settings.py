@@ -75,12 +75,14 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
 ]
 
-# CORS_ORIGIN_WHITELIST = [
-#     'https://localhost:3000',  # React's default port
-#     'https://cmsserver.up.railway.app',
-# ]
+CORS_ORIGIN_WHITELIST = [
+    'https://localhost:3000',  # React's default port
+    'https://cmsserver.up.railway.app',
+]
 
 ROOT_URLCONF = 'cms.urls'
+
+SECURE_SSL_REDIRECT = True
 
 TEMPLATES = [
     {
