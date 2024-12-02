@@ -96,6 +96,7 @@ TEMPLATES = [
         },
     },
 ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')  # Directory 
 
 WSGI_APPLICATION = 'cms.wsgi.application'
 
