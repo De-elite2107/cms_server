@@ -30,7 +30,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['cmsserver-production.up.railway.app', 'localhost']
+ALLOWED_HOSTS = ['cmsserver.up.railway.app', 'localhost']
 
 
 # Application definition
