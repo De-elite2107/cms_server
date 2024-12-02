@@ -82,7 +82,10 @@ CORS_ORIGIN_WHITELIST = [
 
 ROOT_URLCONF = 'cms.urls'
 
-SECURE_SSL_REDIRECT = True
+SECURE_SSL_REDIRECT = True  # Redirect all HTTP requests to HTTPS
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')  # If behind a proxy
+SESSION_COOKIE_SECURE = True  # Use secure cookies
+CSRF_COOKIE_SECURE = True      # Use secure CSRF cookies
 
 TEMPLATES = [
     {
