@@ -11,6 +11,7 @@ from drf_yasg import openapi
 
 # Create your views here.
 class RegisterView(APIView):
+    parser_classes = [MultiPartParser]
     @swagger_auto_schema(
         request_body=UserSerializer,
         responses={201: openapi.Response('User registered successfully', UserSerializer)}
