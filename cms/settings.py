@@ -137,6 +137,8 @@ CSRF_TRUSTED_ORIGINS = [
 
 AUTH_USER_MODEL = 'userapp.User'
 
+APPEND_SLASH = True
+
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
