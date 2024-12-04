@@ -80,11 +80,6 @@ CORS_ORIGIN_WHITELIST = [
     'https://cmsserver.up.railway.app',
 ]
 
-CORS_ALLOW_ALL_ORIGINS = True  # Allow all domains to access your API
-
-# Optional: If you want to allow credentials (cookies, authorization headers)
-CORS_ALLOW_CREDENTIALS = True  # Set this only if you need credentials
-
 ROOT_URLCONF = 'cms.urls'
 
 SECURE_SSL_REDIRECT = True  # Redirect all HTTP requests to HTTPS
