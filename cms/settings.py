@@ -111,23 +111,20 @@ WSGI_APPLICATION = 'cms.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-# Ensure the directory exists
-if os.environ.get('RAILWAY_ENV') == 'production':
-    DATABASE_PATH = os.path.join('/db', 'db.sqlite3')  # For Railway production
-else:
-    DATABASE_PATH = os.path.join(BASE_DIR, 'db.sqlite3')  # For local development
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': DATABASE_PATH,
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('PGDATABASE'),  # Use environment variable
+        'USER': os.environ.get('PGUSER'),      # Use environment variable
+        'PASSWORD': os.environ.get('PGPASSWORD'),  # Use environment variable
+        'HOST': os.environ.get('PGHOST'),      # Use environment variable
+        'PORT': os.environ.get('PGPORT'),      # Use environment variable
     }
 }
 
-# Update database configuration from DATABASE_URL environment variable if defined
+# Alternatively, if you want to use DATABASE_URL directly:
 if 'DATABASE_URL' in os.environ:
     DATABASES['default'] = dj_database_url.config(conn_max_age=500)
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
