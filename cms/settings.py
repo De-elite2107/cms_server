@@ -113,18 +113,14 @@ WSGI_APPLICATION = 'cms.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('PGDATABASE'),  # Use environment variable
-        'USER': os.environ.get('PGUSER'),      # Use environment variable
-        'PASSWORD': os.environ.get('PGPASSWORD'),  # Use environment variable
-        'HOST': os.environ.get('PGHOST'),      # Use environment variable
-        'PORT': os.environ.get('PGPORT'),      # Use environment variable
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
-# Alternatively, if you want to use DATABASE_URL directly:
 if 'DATABASE_URL' in os.environ:
     DATABASES['default'] = dj_database_url.config(conn_max_age=500)
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
