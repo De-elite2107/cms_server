@@ -79,11 +79,13 @@ MIDDLEWARE = [
 CORS_ORIGIN_WHITELIST = [
     'https://localhost:3000',  # React's default port
     'https://cmsserver.up.railway.app',
+    'https://de-elite2107.github.io',
 ]
 
 CORS_ALLOWED_ORIGINS = [
     'https://localhost:3000',  # React's default port
     'https://cmsserver.up.railway.app',
+    'https://de-elite2107.github.io',
 ]
 
 CORS_ALLOW_METHODS = [
