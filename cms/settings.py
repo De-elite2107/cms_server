@@ -126,6 +126,7 @@ DATABASES = {
 
 if 'DATABASE_URL' in os.environ:
     DATABASES['default'] = dj_database_url.config(default=os.getenv('DATABASE_URL'), conn_max_age=600)
+    print('DB_URL', os.getenv('DATABASE_URL'))
 
 
 # Password validation
