@@ -112,8 +112,18 @@ WSGI_APPLICATION = 'cms.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',  # Specify the engine
+        'NAME': os.getenv('POSTGRES_DB'),             # Database name
+        'USER': os.getenv('POSTGRES_USER'),                 # Database user
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),         # Database password
+        'HOST': os.getenv('PGHOST'),                 # Database host
+        'PORT': os.getenv('PGPORT', '5432'),         # Database port (default is 5432)
+    }
 }
+
+# Alternatively, if you're using DATABASE_URL directly
+DATABASES['default'] = dj_database_url.config(default=os.getenv('DATABASE_URL'))
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
