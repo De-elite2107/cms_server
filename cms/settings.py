@@ -114,7 +114,14 @@ WSGI_APPLICATION = 'cms.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',  # Preferred option
+        'NAME': os.getenv('PGDATABASE'),             # Database name from environment variable
+        'USER': os.getenv('PGUSER'),                 # Username from environment variable
+        'PASSWORD': os.getenv('PGPASSWORD'),         # Password from environment variable
+        'HOST': os.getenv('PGHOST'),                 # Host from environment variable
+        'PORT': os.getenv('PGPORT', '5432'),         # Port from environment variable, default to 5432 if not set
+    }
 }
 
 if 'DATABASE_URL' in os.environ:
