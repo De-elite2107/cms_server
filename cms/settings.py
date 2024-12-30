@@ -118,7 +118,7 @@ DATABASES = {
         'USER': os.getenv('PGUSER'),          # Get username from environment variable
         'PASSWORD': os.getenv('PGPASSWORD'),  # Get password from environment variable
         'HOST': os.getenv('PGHOST'),          # Get host from environment variable
-        'PORT': os.getenv('PGPORT'),  # Get port from environment variable, default to 5432 if not set
+        'PORT': os.getenv('PGPORT', '5432'),  # Get port from environment variable, default to 5432 if not set
     }
 }
 
