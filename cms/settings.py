@@ -113,8 +113,12 @@ WSGI_APPLICATION = 'cms.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',  # Use 'django.db.backends.postgresql_psycopg2' if needed
+        'NAME': os.getenv('PGDATABASE'),          # Get database name from environment variable
+        'USER': os.getenv('PGUSER'),          # Get username from environment variable
+        'PASSWORD': os.getenv('PGPASSWORD'),  # Get password from environment variable
+        'HOST': os.getenv('PGHOST'),          # Get host from environment variable
+        'PORT': os.getenv('PGPORT'),  # Get port from environment variable, default to 5432 if not set
     }
 }
 
