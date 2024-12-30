@@ -111,15 +111,26 @@ WSGI_APPLICATION = 'cms.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('PGDATABASE', 'railway'),  # Default to 'railway' if not set
+        'USER': os.getenv('PGUSER', 'postgres'),      # Default to 'postgres'
+        'PASSWORD': os.getenv('PGPASSWORD', ''),      # Default to empty if not set
+        'HOST': os.getenv('PGHOST', 'localhost'),     # Default to 'localhost'
+        'PORT': os.getenv('PGPORT', '5432'),          # Default to PostgreSQL port
     }
 }
 
+# Alternatively, if you're using DATABASE_URL directly
 if 'DATABASE_URL' in os.environ:
-    DATABASES['default'] = dj_database_url.config(conn_max_age=500)
+    DATABASES['default'] = dj_database_url.config(
+        default=os.getenv('DATABASE_URL'),
+        conn_max_age=500,
+        conn_health_checks=True,
+    )
+
 
 
 # Password validation
