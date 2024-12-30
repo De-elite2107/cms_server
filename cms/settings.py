@@ -98,7 +98,7 @@ CORS_ALLOW_METHODS = [
 ]
 
 CORS_ALLOW_HEADERS = [
-    'content-type',
+    'Content-Type',
     'Authorization',
     'Bearer',
 ]
