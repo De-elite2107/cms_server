@@ -81,6 +81,26 @@ CORS_ORIGIN_WHITELIST = [
     'https://cmsserver.up.railway.app',
 ]
 
+CORS_ALLOWED_ORIGINS = [
+    'https://localhost:3000',  # React's default port
+    'https://cmsserver.up.railway.app',
+]
+
+CORS_ALLOW_METHODS = [
+    'GET',
+    'POST',
+    'PUT',
+    'PATCH',
+    'DELETE',
+    'OPTIONS',
+]
+
+CORS_ALLOW_HEADERS = [
+    'content-type',
+    'authorization',
+]
+
+
 ROOT_URLCONF = 'cms.urls'
 
 SECURE_SSL_REDIRECT = True  # Redirect all HTTP requests to HTTPS
