@@ -19,20 +19,8 @@ from drf_yasg import openapi
 # Create your views here.
 class RegisterView(APIView):
     @swagger_auto_schema(
-        manual_parameters=[
-            openapi.Parameter('username', openapi.IN_FORM, description="Username of the user", type=openapi.TYPE_STRING, required=True),
-            openapi.Parameter('first_name', openapi.IN_FORM, description="First name of the user", type=openapi.TYPE_STRING, required=True),
-            openapi.Parameter('last_name', openapi.IN_FORM, description="Last name of the user", type=openapi.TYPE_STRING, required=True),
-            openapi.Parameter('email', openapi.IN_FORM, description="Email address of the user", type=openapi.TYPE_STRING, required=True),
-            openapi.Parameter('phone', openapi.IN_FORM, description="Phone number of the user", type=openapi.TYPE_STRING, required=True),
-            openapi.Parameter('password', openapi.IN_FORM, description="Password for the user account", type=openapi.TYPE_STRING, required=True),
-            openapi.Parameter('address', openapi.IN_FORM, description="Address of the user", type=openapi.TYPE_STRING, required=True),
-            openapi.Parameter('dob', openapi.IN_FORM, description="Date of birth of the user (YYYY-MM-DD)", type=openapi.TYPE_STRING, required=True),
-            openapi.Parameter('occupation', openapi.IN_FORM, description="Occupation of the user", type=openapi.TYPE_STRING, required=True),
-            openapi.Parameter('wedding', openapi.IN_FORM, description="Wedding date of the user (YYYY-MM-DD)", type=openapi.TYPE_STRING),
-            openapi.Parameter('role', openapi.IN_FORM, description="Role of the user", type=openapi.TYPE_STRING, required=True),
-        ],
-        responses={201: openapi.Response('User registered successfully', UserSerializer)}
+        request_body=UserSerializer,
+        responses={200: openapi.Response('User registered successfully', UserSerializer)}
     )
     def post(self, request, *args, **kwargs):
         serializer = UserSerializer(data=request.data)
