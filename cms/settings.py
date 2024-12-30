@@ -14,6 +14,8 @@ from pathlib import Path
 import os
 import dj_database_url
 from dotenv import load_dotenv
+import sys
+print(sys.path)
 load_dotenv()
 env = Path(".")/".env"
 load_dotenv(dotenv_path=env)
