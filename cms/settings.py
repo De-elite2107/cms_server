@@ -88,6 +88,21 @@ CORS_ALLOWED_ORIGINS = [
     'https://de-elite2107.github.io',
 ]
 
+CORS_ALLOW_METHODS = [
+    'GET',
+    'POST',
+    'PUT',
+    'PATCH',
+    'DELETE',
+    'OPTIONS',
+]
+
+CORS_ALLOW_HEADERS = [
+    'content-type',
+    'Authorization',
+    'Bearer',
+]
+
 
 ROOT_URLCONF = 'cms.urls'
 
