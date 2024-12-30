@@ -113,7 +113,7 @@ WSGI_APPLICATION = 'cms.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',  # Use 'django.db.backends.postgresql_psycopg2' if needed
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',  # Use 'django.db.backends.postgresql_psycopg2' if needed
         'NAME': os.getenv('PGDATABASE'),          # Get database name from environment variable
         'USER': os.getenv('PGUSER'),          # Get username from environment variable
         'PASSWORD': os.getenv('PGPASSWORD'),  # Get password from environment variable
