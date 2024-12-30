@@ -15,11 +15,9 @@ from rest_framework.authentication import BaseAuthentication
 from rest_framework.exceptions import AuthenticationFailed
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
-from rest_framework.parsers import MultiPartParser
 
 # Create your views here.
 class RegisterView(APIView):
-    parser_classes = [MultiPartParser]
     @swagger_auto_schema(
         manual_parameters=[
             openapi.Parameter('username', openapi.IN_FORM, description="Username of the user", type=openapi.TYPE_STRING, required=True),
