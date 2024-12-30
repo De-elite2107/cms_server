@@ -103,7 +103,6 @@ class CustomTokenAuthentication(BaseAuthentication):
         
 class LogoutView(APIView):
     permission_classes = [IsAuthenticated]  # Ensure the user is authenticated
-    authentication_classes = [CustomTokenAuthentication]  # Use your custom authentication
 
     def post(self, request):
         try:
