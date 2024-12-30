@@ -10,3 +10,4 @@ python-dotenv==1.0.1
 gunicorn>=20.0.0
 psycopg2-binary
 dj-database-url
+XkiLdGTHPnTTPIkCWluLkvQbHsVZeSij

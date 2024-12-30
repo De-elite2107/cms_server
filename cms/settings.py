@@ -14,8 +14,6 @@ from pathlib import Path
 import os
 import dj_database_url
 from dotenv import load_dotenv
-import sys
-print(sys.path)
 load_dotenv()
 env = Path(".")/".env"
 load_dotenv(dotenv_path=env)
@@ -115,18 +113,13 @@ WSGI_APPLICATION = 'cms.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',  # Preferred option
-        'NAME': os.getenv('PGDATABASE'),             # Database name from environment variable
-        'USER': os.getenv('PGUSER'),                 # Username from environment variable
-        'PASSWORD': os.getenv('PGPASSWORD'),         # Password from environment variable
-        'HOST': os.getenv('PGHOST'),                 # Host from environment variable
-        'PORT': os.getenv('PGPORT', '5432'),         # Port from environment variable, default to 5432 if not set
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
 if 'DATABASE_URL' in os.environ:
-    DATABASES['default'] = dj_database_url.config(default=os.getenv('DATABASE_URL'), conn_max_age=600)
-    print('DB_URL', os.getenv('DATABASE_URL'))
+    DATABASES['default'] = dj_database_url.config(conn_max_age=500)
 
 
 # Password validation
