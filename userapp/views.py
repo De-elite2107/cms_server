@@ -72,6 +72,23 @@ class LoginView(ObtainAuthToken):
             # Return an error response if authentication fails
             return Response({'error': 'Invalid Credentials'}, status=status.HTTP_400_BAD_REQUEST)
 
+@api_view(["POST"])
+def admin_login(request):
+    username = request.data.get("username")
+    password = request.data.get("password")
+    
+    # Authenticate the user
+    user = authenticate(request, username=username, password=password)
+    
+    # Check if user is authenticated and has admin role
+    if user is not None:
+        if user.is_staff:  # Check if the user is an admin
+            return Response({"success": True, "message": "Login successful"}, status=200)
+        else:
+            return Response({"success": False, "error": "User does not have admin privileges"}, status=403)
+    else:
+        return Response({"success": False, "error": "Invalid credentials"}, status=401)
+
 class CustomTokenAuthentication(BaseAuthentication):
     def authenticate(self, request):
         # Get the Authorization header
