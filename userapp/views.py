@@ -83,14 +83,14 @@ class AdminLogin(ObtainAuthToken):
         # Check if user is authenticated and has admin role
         if user is not None:
             # Get or create token for the authenticated user
-            token, created = Token.objects.get_or_create(user=user)
-            data = {
-                'user_id': user.id,
-                'username': user.username,
-                'email': user.email,
-                'role': getattr(user, 'role', None),  # Use getattr for safety in case role doesn't exist
-            }
             if user.is_staff:  # Check if the user is an admin
+                token, created = Token.objects.get_or_create(user=user)
+                data = {
+                    'user_id': user.id,
+                    'username': user.username,
+                    'email': user.email,
+                    'role': getattr(user, 'role', None),  # Use getattr for safety in case role doesn't exist
+                }
                 return Response({
                     'token': token.key,
                     'message': 'Login Successful',
