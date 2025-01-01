@@ -42,7 +42,7 @@ class RegisterView(APIView):
                     'role': user.role,
                 }
             }, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.errors, status=400)
 
 class LoginView(ObtainAuthToken):
     def post(self, request, *args, **kwargs):
@@ -70,7 +70,7 @@ class LoginView(ObtainAuthToken):
             })
         else:
             # Return an error response if authentication fails
-            return Response({'error': 'Invalid Credentials'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'error': 'Invalid Credentials'}, status=401)
 
 class AdminLogin(ObtainAuthToken):
     def post(self, request, *args, **kwargs):
@@ -139,11 +139,11 @@ class LogoutView(APIView):
             token = request.auth
             
             if not token:
-                return Response({'error': 'No token provided.'}, status=status.HTTP_400_BAD_REQUEST)
+                return Response({'error': 'No token provided.'}, status=400)
 
             # Delete the token to log out the user
             Token.objects.filter(key=token).delete()
             
-            return Response({'message': 'Successfully logged out.'}, status=status.HTTP_200_OK)
+            return Response({'message': 'Successfully logged out.'}, status=200)
         except Exception as e:
-            return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'error': str(e)}, status=400)
