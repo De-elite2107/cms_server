@@ -72,22 +72,34 @@ class LoginView(ObtainAuthToken):
             # Return an error response if authentication fails
             return Response({'error': 'Invalid Credentials'}, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(["POST"])
-def admin_login(request):
-    username = request.data.get("username")
-    password = request.data.get("password")
-    
-    # Authenticate the user
-    user = authenticate(request, username=username, password=password)
-    
-    # Check if user is authenticated and has admin role
-    if user is not None:
-        if user.is_staff:  # Check if the user is an admin
-            return Response({"success": True, "message": "Login successful"}, status=200)
+class AdminLogin(ObtainAuthToken):
+    def post(self, request, *args, **kwargs):
+        username = request.data.get("username")
+        password = request.data.get("password")
+        
+        # Authenticate the user
+        user = authenticate(request, username=username, password=password)
+        
+        # Check if user is authenticated and has admin role
+        if user is not None:
+            # Get or create token for the authenticated user
+            token, created = Token.objects.get_or_create(user=user)
+            data = {
+                'user_id': user.id,
+                'username': user.username,
+                'email': user.email,
+                'role': getattr(user, 'role', None),  # Use getattr for safety in case role doesn't exist
+            }
+            if user.is_staff:  # Check if the user is an admin
+                return Response({
+                    'token': token.key,
+                    'message': 'Login Successful',
+                    'data': data,
+                })
+            else:
+                return Response({"success": False, "error": "User does not have admin privileges"}, status=403)
         else:
-            return Response({"success": False, "error": "User does not have admin privileges"}, status=403)
-    else:
-        return Response({"success": False, "error": "Invalid credentials"}, status=401)
+            return Response({"success": False, "error": "Invalid credentials"}, status=401)
 
 class CustomTokenAuthentication(BaseAuthentication):
     def authenticate(self, request):
